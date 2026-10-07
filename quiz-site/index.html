@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0B1F3A">
+  <title>Bending Test Quiz – CE 306 Lab</title>
+  <meta name="description" content="Bending Test Quiz – CE 306 Lab · Experiment No. 3 · ASTM C78/C78M">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=Carlito:wght@400;700&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-navy">
+
+  <!-- ============ START ============ -->
+  <section id="screen-start" class="screen" aria-labelledby="start-title">
+    <div class="wrap">
+      <div class="logos">
+        <img src="assets/ksu-white.png" alt="King Saud University" class="logo-ksu">
+        <span class="logo-divider" aria-hidden="true"></span>
+        <img src="assets/coe-white.png" alt="College of Engineering" class="logo-coe">
+      </div>
+
+      <p class="kicker">CE 306 Lab</p>
+      <h1 id="start-title" class="title-xl">Bending Test Quiz</h1>
+      <p class="subtitle">Experiment No. 3 &nbsp;·&nbsp; ASTM C78/C78M</p>
+
+      <hr class="rule">
+
+      <p class="meta">3 quick questions &nbsp;·&nbsp; about 1 minute</p>
+
+      <form id="start-form" novalidate>
+        <div class="field">
+          <label for="name">Full name</label>
+          <input id="name" name="name" type="text" autocomplete="name" required maxlength="80">
+          <p class="field-error" id="name-error" hidden>Please enter your full name.</p>
+        </div>
+        <div class="field">
+          <label for="sid">Student ID</label>
+          <input id="sid" name="sid" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" required maxlength="12">
+          <p class="field-error" id="sid-error" hidden>Please enter your student ID (digits only).</p>
+        </div>
+        <button type="submit" class="btn btn-sky">Start Quiz</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ QUESTION ============ -->
+  <section id="screen-quiz" class="screen" hidden aria-live="polite">
+    <div class="wrap">
+      <header class="topbar">
+        <div class="logos logos-sm">
+          <img src="assets/ksu-navy.png" alt="King Saud University" class="logo-ksu">
+          <span class="logo-divider" aria-hidden="true"></span>
+          <img src="assets/coe-navy.png" alt="College of Engineering" class="logo-coe">
+        </div>
+        <span class="step" id="step">1 / 3</span>
+      </header>
+
+      <div class="progress" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+
+      <p class="kicker">Think about it</p>
+      <div class="q-head">
+        <span class="q-num" id="q-num">Q1</span>
+        <h2 class="q-text" id="q-text"></h2>
+      </div>
+
+      <div class="options" id="options" role="radiogroup" aria-labelledby="q-text"></div>
+
+      <div class="feedback" id="feedback" hidden>
+        <p class="kicker" id="fb-kicker"></p>
+        <p id="fb-text"></p>
+      </div>
+
+      <button type="button" class="btn btn-navy" id="btn-main" disabled>Check answer</button>
+    </div>
+  </section>
+
+  <!-- ============ RESULT ============ -->
+  <section id="screen-result" class="screen" hidden>
+    <div class="wrap">
+      <div class="logos logos-sm">
+        <img src="assets/ksu-white.png" alt="King Saud University" class="logo-ksu">
+        <span class="logo-divider" aria-hidden="true"></span>
+        <img src="assets/coe-white.png" alt="College of Engineering" class="logo-coe">
+      </div>
+
+      <p class="kicker">Your result</p>
+      <p class="score"><span id="score">0</span><span class="score-of">/3</span></p>
+      <p class="subtitle" id="score-msg"></p>
+      <p class="who" id="who"></p>
+
+      <hr class="rule">
+
+      <p class="kicker">Review</p>
+      <ol class="review" id="review"></ol>
+
+      <p class="save-status" id="save-status" role="status"></p>
+    </div>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
