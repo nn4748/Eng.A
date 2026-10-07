@@ -353,6 +353,28 @@ body.theme-white { background: var(--white); color: var(--navy); }
   color: var(--text-muted-navy);
 }
 
+/* ---------- credits ---------- */
+.credits { margin-top: 36px; }
+.credits .rule { margin: 0 0 28px; }
+.credits-title {
+  margin: 0 0 22px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.2;
+  color: var(--white);
+}
+.team { list-style: none; margin: 10px 0 0; padding: 0; }
+.team li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 7px 0;
+  font-size: 17px;
+}
+.team-name { font-weight: 700; color: var(--white); }
+.team-id { color: var(--text-muted-navy); font-variant-numeric: tabular-nums; }
+
 @media (min-width: 600px) {
   .wrap { padding-top: 56px; }
   .title-xl { font-size: 52px; }
