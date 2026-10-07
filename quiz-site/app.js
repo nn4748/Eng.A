@@ -9,7 +9,7 @@ const FORM_FIELDS = {
   q1:        "entry.1386237338",
   q2:        "entry.1789514073",
   q3:        "entry.662991097",
-  score:     ""                    // "Score (out of 3)" question — not in the form yet
+  score:     "entry.936423623"
 };
 /* ===================================================================== */
 
