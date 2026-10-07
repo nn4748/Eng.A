@@ -1,8 +1,16 @@
 /* =====================================================================
-   PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL BETWEEN THE QUOTES BELOW
-   It looks like: https://script.google.com/macros/s/XXXXXXXX/exec
+   GOOGLE FORM SETTINGS — results are sent to this form, and the form
+   saves them in its linked Google Sheet.
    ===================================================================== */
-const SHEET_URL = "PASTE_HERE";
+const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSddsL43Fly4DV8QS67jb9dea8mX4XBxBEsB4c2pec_s4kEAGQ/formResponse";
+const FORM_FIELDS = {
+  name:      "entry.183529662",
+  studentId: "entry.1212004947",
+  q1:        "entry.1386237338",
+  q2:        "entry.1789514073",
+  q3:        "entry.662991097",
+  score:     ""                    // "Score (out of 3)" question — not in the form yet
+};
 /* ===================================================================== */
 
 (function () {
@@ -223,30 +231,24 @@ const SHEET_URL = "PASTE_HERE";
 
   function send(record) {
     const status = $("save-status");
-
-    if (!SHEET_URL || SHEET_URL === "PASTE_HERE") {
-      status.textContent = "Note: results sheet is not connected yet (SHEET_URL not set).";
-      return;
-    }
-
     status.textContent = "Saving your result…";
-    const payload = {
+
+    const values = {
       name: record.name,
       studentId: record.id,
       q1: answerText(0, record.answers[0]),
       q2: answerText(1, record.answers[1]),
       q3: answerText(2, record.answers[2]),
-      score: record.score,
-      finishedAt: record.finishedAt
+      score: String(record.score)
     };
+    const body = new URLSearchParams();
+    Object.keys(FORM_FIELDS).forEach((key) => {
+      if (FORM_FIELDS[key]) body.append(FORM_FIELDS[key], values[key]);
+    });
 
-    // text/plain + no-cors = a "simple" request, so the browser sends it without a CORS preflight.
-    fetch(SHEET_URL, {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify(payload)
-    })
+    // Google Forms doesn't allow reading the reply (no-cors), but a form-encoded
+    // POST is a "simple" request, so the browser sends it without a preflight.
+    fetch(FORM_URL, { method: "POST", mode: "no-cors", body: body })
       .then(() => {
         record.sent = true;
         save(record);
